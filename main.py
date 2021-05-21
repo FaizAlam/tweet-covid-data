@@ -21,16 +21,16 @@ new_deaths = soup.find('li',class_='news_li').find_all('strong')[1].text[:5]
 total_cases = soup.find('div',class_='maincounter-number').find_all('span')[0].text
     #total_deaths = soup.find('div',class_='maincounter-number').find_all('span')[3].text
 
-filename = str(date.today())
-    #print('Total cases : '+ total_cases)
-f = open(f"{filename}.txt", "x")
-f.write(f"Covid cases as of {str(date.today())} \n")
-f.write("New Cases : "+new_cases+'\n')
-f.write("New Deaths : "+new_deaths+'\n')
-f.write("Total Cases : "+new_deaths)
-f.write("\n")
-f.write("#covid #StaySafeStayHome #StayHome #MoHFW")
-f.close()
+
+to_tweet = ''
+
+to_tweet +=(f"Covid cases as of {str(date.today())} \n")
+to_tweet +=("New Cases : "+new_cases+'\n')
+to_tweet +=("New Deaths : "+new_deaths+'\n')
+to_tweet+=("Total Cases : "+total_cases+'\n')
+to_tweet+=('\n')
+to_tweet+=("#covid #StaySafeStayHome #StayHome #MoHFW")
+
 
 C_key =os.environ.get('C_key')
 C_secret =os.environ.get('C_secret')
@@ -41,10 +41,8 @@ auth = tweepy.OAuthHandler(C_key,C_secret)
 auth.set_access_token(A_Key,A_secret)
 auth.secret = True
 api = tweepy.API(auth,wait_on_rate_limit=True,wait_on_rate_limit_notify=True)
-filename=open(f"{filename}.txt",'r')
-text=filename.read()
-    # update the status
-api.update_status(status =text)
+
+api.update_status(status =to_tweet)
 
 
 
