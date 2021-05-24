@@ -60,7 +60,7 @@ def tweet_vaccine():
     fully = driver.find_element_by_xpath('/html/body/main/div[1]/section[2]/div/div/div/div/div/article[2]/div/div/table/tbody/tr[3]/td[4]').text.strip()
     vaccines = driver.find_element_by_xpath('/html/body/main/div[1]/section[2]/div/div/div/div/div/article[2]/div/div/table/tbody/tr[3]/td[5]').text.strip()
     vaccine_txt = ''
-    vaccine_txt +=(f"Covid cases as of {str(date.today())} \n")
+    vaccine_txt +=(f"Vaccine data as of {str(date.today())} \n")
     vaccine_txt +=("Total doses administered :"+total+'\n')
     vaccine_txt +=("Fully vaccinated population :"+fully+'\n')
     vaccine_txt +=("Vaccines being used :"+vaccines+'\n')
