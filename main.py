@@ -61,9 +61,9 @@ def tweet_vaccine():
     vaccines = driver.find_element_by_xpath('/html/body/main/div[1]/section[2]/div/div/div/div/div/article[2]/div/div/table/tbody/tr[3]/td[5]').text.strip()
     vaccine_txt = ''
     vaccine_txt +=(f"Covid cases as of {str(date.today())} \n")
-    vaccine_txt +=("Total doses administered :",total+'\n')
-    vaccine_txt +=("Fully vaccinated population :",fully+'\n')
-    vaccine_txt +=("Vaccines being used :",vaccines+'\n')
+    vaccine_txt +=("Total doses administered :"+total+'\n')
+    vaccine_txt +=("Fully vaccinated population :"+fully+'\n')
+    vaccine_txt +=("Vaccines being used :"+vaccines+'\n')
     vaccine_txt +=("#vaccineIndia #StaySafeStayHome #StayHome #MoHFW ")
     
     auth = tweepy.OAuthHandler(consumer_key,consumer_secret)
@@ -76,7 +76,7 @@ def tweet_vaccine():
 
 scheduler = BlockingScheduler()
 scheduler.add_job(tweet_cases,'cron',month='5-7',day_of_week='mon-sun', hour='23',minute='40',timezone='Asia/Kolkata')
-scheduler.add_job(tweet_vaccine,'cron',month='5-7',day_of_week='mon-sun', hour='00',minute='32',timezone='Asia/Kolkata')
+scheduler.add_job(tweet_vaccine,'cron',month='5-7',day_of_week='mon-sun', hour='00',minute='44',timezone='Asia/Kolkata')
 scheduler.start()
 
 
