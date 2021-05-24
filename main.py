@@ -76,7 +76,7 @@ def tweet_vaccine():
 
 scheduler = BlockingScheduler()
 scheduler.add_job(tweet_cases,'cron',month='5-7',day_of_week='mon-sun', hour='23',minute='40',timezone='Asia/Kolkata')
-scheduler.add_job(tweet_vaccine,'cron',month='5-7',day_of_week='mon-sun', hour='00',minute='44',timezone='Asia/Kolkata')
+scheduler.add_job(tweet_vaccine,'cron',month='5-7',day_of_week='mon-sun', hour='00',minute='54',timezone='Asia/Kolkata')
 scheduler.start()
 
 
