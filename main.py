@@ -48,7 +48,7 @@ def tweet():
 
 
 scheduler = BlockingScheduler()
-scheduler.add_job(tweet,'cron',hour=23)
+scheduler.add_job(tweet,'cron',month='5-7',day_of_week='mon-sun', hour='20',minute='32',timezone='Asia/Kolkata')
 scheduler.start()
 
 
