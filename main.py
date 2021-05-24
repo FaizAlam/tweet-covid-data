@@ -45,7 +45,7 @@ def tweet():
     api.update_status(status =to_tweet)
 
 scheduler = BlockingScheduler()
-scheduler.add_job(tweet,'cron',month='5-7',day_of_week='mon-sun', hour='20',minute='32',timezone='Asia/Kolkata')
+scheduler.add_job(tweet,'cron',month='5-7',day_of_week='mon-sun', hour='23',minute='40',timezone='Asia/Kolkata')
 scheduler.start()
 
 
