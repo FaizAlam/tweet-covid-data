@@ -3,12 +3,10 @@ import time
 from bs4 import BeautifulSoup
 import os
 import tweepy
-import os
-import environ
+from decouple import config
 from datetime import date
 from secrets import *
 from apscheduler.schedulers.blocking import BlockingScheduler
-environ.Env.read_env()
 
 def tweet():
     url= 'https://www.worldometers.info/coronavirus/country/india/'
@@ -34,18 +32,17 @@ def tweet():
     to_tweet+=("#covid #StaySafeStayHome #StayHome #MoHFW")
 
 
-    C_key =os.environ.get('C_key')
-    C_secret =os.environ.get('C_secret')
-    A_Key = os.environ.get('A_key')
-    A_secret = os.environ.get('A_secret')
+    consumer_key = config('C_key')
+    consumer_secret = config('C_secret')
+    access_token = config('A_key')
+    access_token_secret = config('A_secret')
 
-    auth = tweepy.OAuthHandler(C_key,C_secret)
-    auth.set_access_token(A_Key,A_secret)
+    auth = tweepy.OAuthHandler(consumer_key,consumer_secret)
+    auth.set_access_token(access_token,access_token_secret)
     auth.secret = True
     api = tweepy.API(auth,wait_on_rate_limit=True,wait_on_rate_limit_notify=True)
 
     api.update_status(status =to_tweet)
-
 
 scheduler = BlockingScheduler()
 scheduler.add_job(tweet,'cron',month='5-7',day_of_week='mon-sun', hour='20',minute='32',timezone='Asia/Kolkata')
