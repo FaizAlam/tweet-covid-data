@@ -47,12 +47,12 @@ def tweet_cases():
     api.update_status(status =to_tweet)
 
 def tweet_vaccine():
-    op = webdriver.ChromeOptions()
-    op.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    op.add_argument('--headless')
-    op.add_argument('--no-sandbox')
-    op.add_argument('--disable-dev-shm-usage')
-    driver = webdriver.Chrome(ChromeDriverManager().install(), options=op)
+    options = webdriver.ChromeOptions()
+    options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    options.add_argument("--headless")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--no-sandbox")
+    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=options)
 
     driver.get('https://www.pharmaceutical-technology.com/covid-19-vaccination-tracker/')
 
