@@ -7,8 +7,15 @@ from decouple import config
 from datetime import date
 from secrets import *
 from apscheduler.schedulers.blocking import BlockingScheduler
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium import webdriver
 
-def tweet():
+consumer_key = config('C_key')
+consumer_secret = config('C_secret')
+access_token = config('A_key')
+access_token_secret = config('A_secret')
+
+def tweet_cases():
     url= 'https://www.worldometers.info/coronavirus/country/india/'
     page = requests.get(url)
     soup = BeautifulSoup(page.content, 'html.parser')
@@ -32,11 +39,6 @@ def tweet():
     to_tweet+=("#covid #StaySafeStayHome #StayHome #MoHFW")
 
 
-    consumer_key = config('C_key')
-    consumer_secret = config('C_secret')
-    access_token = config('A_key')
-    access_token_secret = config('A_secret')
-
     auth = tweepy.OAuthHandler(consumer_key,consumer_secret)
     auth.set_access_token(access_token,access_token_secret)
     auth.secret = True
@@ -44,8 +46,37 @@ def tweet():
 
     api.update_status(status =to_tweet)
 
+def tweet_vaccine():
+    op = webdriver.ChromeOptions()
+    op.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    op.add_argument('--headless')
+    op.add_argument('--no-sandbox')
+    op.add_argument('--disable-dev-shm-usage')
+    driver = webdriver.Chrome(ChromeDriverManager().install(), options=op)
+
+    driver.get('https://www.pharmaceutical-technology.com/covid-19-vaccination-tracker/')
+
+    total = driver.find_element_by_xpath('/html/body/main/div[1]/section[2]/div/div/div/div/div/article[2]/div/div/table/tbody/tr[3]/td[2]').text
+    fully = driver.find_element_by_xpath('/html/body/main/div[1]/section[2]/div/div/div/div/div/article[2]/div/div/table/tbody/tr[3]/td[4]').text.strip()
+    vaccines = driver.find_element_by_xpath('/html/body/main/div[1]/section[2]/div/div/div/div/div/article[2]/div/div/table/tbody/tr[3]/td[5]').text.strip()
+    vaccine_txt = ''
+    vaccine_txt +=(f"Covid cases as of {str(date.today())} \n")
+    vaccine_txt +=("Total doses administered :",total+'\n')
+    vaccine_txt +=("Fully vaccinated population :",fully+'\n')
+    vaccine_txt +=("Vaccines being used :",vaccines+'\n')
+    vaccine_txt +=("#vaccineIndia #StaySafeStayHome #StayHome #MoHFW ")
+    
+    auth = tweepy.OAuthHandler(consumer_key,consumer_secret)
+    auth.set_access_token(access_token,access_token_secret)
+    auth.secret = True
+    api = tweepy.API(auth,wait_on_rate_limit=True,wait_on_rate_limit_notify=True)
+
+    api.update_status(status =vaccine_txt)
+
+
 scheduler = BlockingScheduler()
-scheduler.add_job(tweet,'cron',month='5-7',day_of_week='mon-sun', hour='23',minute='40',timezone='Asia/Kolkata')
+scheduler.add_job(tweet_cases,'cron',month='5-7',day_of_week='mon-sun', hour='23',minute='40',timezone='Asia/Kolkata')
+scheduler.add_job(tweet_vaccine,'cron',month='5-7',day_of_week='mon-sun', hour='00',minute='15',timezone='Asia/Kolkata')
 scheduler.start()
 
 
