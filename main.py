@@ -115,7 +115,7 @@ def delhi_tweet():
 scheduler = BlockingScheduler()
 scheduler.add_job(tweet_cases,'cron',month='5-7',day_of_week='mon-sun', hour='23',minute='40',timezone='Asia/Kolkata')
 scheduler.add_job(tweet_vaccine,'cron',month='5-7',day_of_week='mon-sun', hour='00',minute='10',timezone='Asia/Kolkata')
-scheduler.add_job(delhi_tweet,'cron',month='5-7',day_of_week='mon-sun', hour='20',minute='45',timezone='Asia/Kolkata')
+scheduler.add_job(delhi_tweet,'cron',month='5-7',day_of_week='mon-sun', hour='21',minute='12',timezone='Asia/Kolkata')
 scheduler.start()
 
 
