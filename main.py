@@ -28,6 +28,17 @@ driver.get('https://www.mygov.in/covid-19')
 soup = BeautifulSoup(driver.page_source)
 dom = etree.HTML(str(soup))
 
+class color:
+   PURPLE = '\033[95m'
+   CYAN = '\033[96m'
+   DARKCYAN = '\033[36m'
+   BLUE = '\033[94m'
+   GREEN = '\033[92m'
+   YELLOW = '\033[93m'
+   RED = '\033[91m'
+   BOLD = '\033[1m'
+   UNDERLINE = '\033[4m'
+   END = '\033[0m'
 
 
 
@@ -41,10 +52,10 @@ def tweet_cases():
     to_tweet = ''
 
     to_tweet +=(f"Covid cases as of {str(date.today().strftime('%d %b, %Y'))} \n")
-    to_tweet +=("New Cases : "+new_C_I+'\n')
-    to_tweet+=("Total Cases : "+total_C_I+'\n')
-    to_tweet +=("New Deaths : "+new_D_I+'\n')
-    to_tweet+=("Total Deaths : "+total_D_I+'\n')
+    to_tweet +=("New Cases : "+color.BOLD +new_C_I+color.END+'\n')
+    to_tweet+=("Total Cases : "+color.BOLD+ total_C_I+color.END+'\n')
+    to_tweet +=("New Deaths : "+color.BOLD+ new_D_I+color.END+'\n')
+    to_tweet+=("Total Deaths : "+color.BOLD+ total_D_I+color.END+'\n')
     to_tweet+=('\n')
     to_tweet+=("#covid #StaySafeStayHome #StayHome #MoHFW")
 
@@ -63,9 +74,10 @@ def tweet_vaccine():
     
     vaccine_txt = ''
     vaccine_txt +=(f"Vaccine data as of {str(date.today().strftime('%d %b, %Y'))} \n")
-    vaccine_txt +=("Total doses administered :"+total_V_I+'\n')
-    vaccine_txt +=("new vaccine administered  :"+new_V_I+'\n')
-    vaccine_txt +=("Vaccines being used : Covishield, Covaxin\n")
+    vaccine_txt += ("\n")
+    vaccine_txt +=("Total doses administered :"+color.BOLD+ total_V_I+color.END+'\n')
+    vaccine_txt +=("new vaccine administered  :"+color.BOLD+ new_V_I+color.END+'\n')
+    vaccine_txt +=("Vaccines being used :"+color.BOLD+"Covishield, Covaxin"+color.END+"\n")
     vaccine_txt +=('\n')
     vaccine_txt +=("#vaccineIndia #StaySafeStayHome #StayHome #MoHFW #covaxin #covishield")
     
@@ -86,9 +98,11 @@ def delhi_tweet():
 
     delhi_det = ''
     delhi_det +=(f"#DELHI covid19 data till {str(date.today().strftime('%d %b, %Y'))}\n")
-    delhi_det += ("Total cases :"+total_C_D+" New cases :"+new_C_D+'\n')
-    delhi_det += ("Total deaths :"+total_D_D+" New deaths :"+new_D_D+'\n')
-    delhi_det += ("Death Ratio :"+death_R_D )
+    delhi_det += ("\n")
+    delhi_det += ("Total cases :"+color.BOLD+ total_C_D+color.END+"  New cases :"+color.BOLD+ new_D_D+color.END+'\n')
+    delhi_det += ("Total deaths :"+color.BOLD+ total_D_D+color.END+"  New deaths :"+color.BOLD+ new_D_D+color.END+'\n')
+    delhi_det += ("Death Ratio :"+color.BOLD+ death_R_D+color.END )
+    delhi_det += ("\n")
     delhi_det +=("\n#covidDelhi #StaySafeStayHome #StayHome #MoHFW #delhicorona")
 
     auth = tweepy.OAuthHandler(consumer_key,consumer_secret)
@@ -104,9 +118,9 @@ def delhi_tweet():
 
 
 scheduler = BlockingScheduler()
-scheduler.add_job(tweet_cases,'cron',month='5-7',day_of_week='mon-sun', hour='21',minute='14',timezone='Asia/Kolkata')
-scheduler.add_job(tweet_vaccine,'cron',month='5-7',day_of_week='mon-sun', hour='21',minute='15',timezone='Asia/Kolkata')
-scheduler.add_job(delhi_tweet,'cron',month='5-7',day_of_week='mon-sun', hour='21',minute='16',timezone='Asia/Kolkata')
+scheduler.add_job(tweet_cases,'cron',month='5-7',day_of_week='mon-sun', hour='23',minute='40',timezone='Asia/Kolkata')
+scheduler.add_job(tweet_vaccine,'cron',month='5-7',day_of_week='mon-sun', hour='23',minute='50',timezone='Asia/Kolkata')
+scheduler.add_job(delhi_tweet,'cron',month='5-7',day_of_week='mon-sun', hour='23',minute='55',timezone='Asia/Kolkata')
 scheduler.start()
 
 
