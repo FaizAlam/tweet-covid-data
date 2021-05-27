@@ -67,6 +67,8 @@ def tweet_cases():
 
     api.update_status(status =to_tweet)
 
+    to_tweet=''
+
 def tweet_vaccine():
     
     total_V_I = dom.xpath('/html/body/div[1]/div[4]/div/div/div/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[7]/div[2]/div[2]/div[1]/strong')[0].text
@@ -86,6 +88,7 @@ def tweet_vaccine():
     auth.secret = True
     api = tweepy.API(auth,wait_on_rate_limit=True,wait_on_rate_limit_notify=True)
     api.update_status(status =vaccine_txt)
+    vaccine_txt=''
 
 def delhi_tweet():
     
@@ -99,8 +102,8 @@ def delhi_tweet():
     delhi_det = ''
     delhi_det +=(f"#DELHI covid19 data till {str(date.today().strftime('%d %b, %Y'))}\n")
     delhi_det += ("\n")
-    delhi_det += ("Total cases :"+total_C_D+"  New cases :"+ new_D_D+'\n')
-    delhi_det += ("Total deaths :"+total_D_D+"  New deaths :"+ new_D_D+'\n')
+    delhi_det += ("Total cases :"+total_C_D+",  New cases :"+ new_D_D+'\n')
+    delhi_det += ("Total deaths :"+total_D_D+",  New deaths :"+ new_D_D+'\n')
     delhi_det += ("Death Ratio :"+death_R_D )
     delhi_det += ("\n")
     delhi_det +=("\n#covidDelhi #StaySafeStayHome #StayHome #MoHFW #delhicorona")
@@ -111,6 +114,8 @@ def delhi_tweet():
     api = tweepy.API(auth,wait_on_rate_limit=True,wait_on_rate_limit_notify=True)
     api.update_status(status =delhi_det)
 
+    delhi_det=''
+
 
 
 
@@ -118,9 +123,9 @@ def delhi_tweet():
 
 
 scheduler = BlockingScheduler()
-scheduler.add_job(tweet_cases,'cron',month='5-7',day_of_week='mon-sun', hour='00',minute='25',timezone='Asia/Kolkata')
-scheduler.add_job(tweet_vaccine,'cron',month='5-7',day_of_week='mon-sun', hour='00',minute='28',timezone='Asia/Kolkata')
-scheduler.add_job(delhi_tweet,'cron',month='5-7',day_of_week='mon-sun', hour='00',minute='32',timezone='Asia/Kolkata')
+scheduler.add_job(tweet_cases,'cron',month='5-7',day_of_week='mon-sun', hour='00',minute='34',timezone='Asia/Kolkata')
+scheduler.add_job(tweet_vaccine,'cron',month='5-7',day_of_week='mon-sun', hour='00',minute='36',timezone='Asia/Kolkata')
+scheduler.add_job(delhi_tweet,'cron',month='5-7',day_of_week='mon-sun', hour='00',minute='38',timezone='Asia/Kolkata')
 scheduler.start()
 
 
