@@ -102,7 +102,7 @@ def delhi_tweet():
     delhi_det = ''
     delhi_det +=(f"#DELHI covid19 data till {str(date.today().strftime('%d %b, %Y'))}\n")
     delhi_det += ("\n")
-    delhi_det += ("Total cases :"+total_C_D+",  New cases :"+ new_D_D+'\n')
+    delhi_det += ("Total cases :"+total_C_D+",  New cases :"+ new_C_D+'\n')
     delhi_det += ("Total deaths :"+total_D_D+",  New deaths :"+ new_D_D+'\n')
     delhi_det += ("Death Ratio :"+death_R_D )
     delhi_det += ("\n")
@@ -123,8 +123,8 @@ def delhi_tweet():
 
 
 scheduler = BlockingScheduler()
-scheduler.add_job(tweet_cases,'cron',month='5-7',day_of_week='mon-sun', hour='00',minute='34',timezone='Asia/Kolkata')
-scheduler.add_job(tweet_vaccine,'cron',month='5-7',day_of_week='mon-sun', hour='00',minute='36',timezone='Asia/Kolkata')
+scheduler.add_job(tweet_cases,'cron',month='5-7',day_of_week='mon-sun', hour='00',minute='25',timezone='Asia/Kolkata')
+scheduler.add_job(tweet_vaccine,'cron',month='5-7',day_of_week='mon-sun', hour='00',minute='28',timezone='Asia/Kolkata')
 scheduler.add_job(delhi_tweet,'cron',month='5-7',day_of_week='mon-sun', hour='00',minute='38',timezone='Asia/Kolkata')
 scheduler.start()
 
