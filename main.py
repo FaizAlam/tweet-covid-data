@@ -52,10 +52,11 @@ def tweet_cases():
     to_tweet = ''
 
     to_tweet +=(f"Covid cases as of {str(date.today().strftime('%d %b, %Y'))} \n")
-    to_tweet +=("New Cases : "+new_C_I+'\n')
-    to_tweet+=("Total Cases : "+ total_C_I+'\n')
-    to_tweet +=("New Deaths : "+ new_D_I+'\n')
-    to_tweet+=("Total Deaths : "+ total_D_I+'\n')
+    to_tweet +=("\n")
+    to_tweet +=("New Cases : "+new_C_I+', Total Cases : '+ total_C_I+'\n')
+    #to_tweet+=("Total Cases : "+ total_C_I+'\n')
+    to_tweet +=("New Deaths : "+new_D_I+', Total Deaths : '+ total_D_I+'\n')
+    #to_tweet+=("Total Deaths : "+ total_D_I+'\n')
     to_tweet+=('\n')
     to_tweet+=("#covid #StaySafeStayHome #StayHome #MoHFW")
 
@@ -78,7 +79,7 @@ def tweet_vaccine():
     vaccine_txt +=(f"Vaccine data as of {str(date.today().strftime('%d %b, %Y'))} \n")
     vaccine_txt += ("\n")
     vaccine_txt +=("Total doses administered :"+ total_V_I+'\n')
-    vaccine_txt +=("new vaccine administered  :"+ new_V_I+'\n')
+    vaccine_txt +=("vaccine administered today :"+ new_V_I+'\n')
     vaccine_txt +=("Vaccines being used : Covishield, Covaxin\n")
     vaccine_txt +=('\n')
     vaccine_txt +=("#vaccineIndia #StaySafeStayHome #StayHome #MoHFW #covaxin #covishield")
@@ -123,9 +124,9 @@ def delhi_tweet():
 
 
 scheduler = BlockingScheduler()
-scheduler.add_job(tweet_cases,'cron',month='5-7',day_of_week='mon-sun', hour='00',minute='25',timezone='Asia/Kolkata')
-scheduler.add_job(tweet_vaccine,'cron',month='5-7',day_of_week='mon-sun', hour='00',minute='28',timezone='Asia/Kolkata')
-scheduler.add_job(delhi_tweet,'cron',month='5-7',day_of_week='mon-sun', hour='00',minute='38',timezone='Asia/Kolkata')
+scheduler.add_job(tweet_cases,'cron',month='5-7',day_of_week='mon-sun', hour='11',minute='30',timezone='Asia/Kolkata')
+scheduler.add_job(tweet_vaccine,'cron',month='5-7',day_of_week='mon-sun', hour='11',minute='40',timezone='Asia/Kolkata')
+scheduler.add_job(delhi_tweet,'cron',month='5-7',day_of_week='mon-sun', hour='11',minute='50',timezone='Asia/Kolkata')
 scheduler.start()
 
 
