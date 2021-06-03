@@ -43,11 +43,11 @@ class color:
 
 
 def tweet_cases():
-    total_C_I = dom.xpath('/html/body/div[1]/div[4]/div/div/div/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[7]/div[4]/div[2]/div/span')[0].text
-    new_C_I = dom.xpath('/html/body/div[1]/div[4]/div/div/div/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[7]/div[4]/div[2]/div/div[2]/div')[0].text.strip()
+    total_C_I = dom.xpath('/html/body/div[1]/div[4]/div/div/div/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[8]/div[4]/div[3]/div/span')[0].text
+    new_C_I = dom.xpath('/html/body/div[1]/div[4]/div/div/div/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[8]/div[4]/div[3]/div/div[2]/div')[0].text.strip()
 
-    total_D_I = dom.xpath('/html/body/div[1]/div[4]/div/div/div/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[7]/div[4]/div[5]/div/span')[0].text
-    new_D_I = dom.xpath('/html/body/div[1]/div[4]/div/div/div/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[7]/div[4]/div[5]/div/div[2]/div')[0].text.strip()
+    total_D_I = dom.xpath('/html/body/div[1]/div[4]/div/div/div/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[8]/div[4]/div[5]/div/span')[0].text
+    new_D_I = dom.xpath('/html/body/div[1]/div[4]/div/div/div/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[8]/div[4]/div[5]/div/div[2]/div')[0].text.strip()
 
     to_tweet = ''
 
@@ -72,9 +72,9 @@ def tweet_cases():
 
 def tweet_vaccine():
     
-    total_V_I = dom.xpath('/html/body/div[1]/div[4]/div/div/div/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[7]/div[2]/div[2]/div[1]/strong')[0].text
-    new_V_I = dom.xpath('/html/body/div[1]/div[4]/div/div/div/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[7]/div[2]/div[2]/div[2]/strong')[0].text
-    
+    total_V_I = dom.xpath('/html/body/div[1]/div[4]/div/div/div/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[8]/div[2]/div/div[3]/strong')[0].text
+    new_V_I = dom.xpath('/html/body/div[1]/div[4]/div/div/div/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[8]/div[2]/div/div[2]/strong')[0].text
+
     vaccine_txt = ''
     vaccine_txt +=(f"Vaccine data as of {str(date.today().strftime('%d %b, %Y'))} \n")
     vaccine_txt += ("\n")
@@ -93,11 +93,13 @@ def tweet_vaccine():
 
 def delhi_tweet():
     
-    total_C_D = dom.xpath('/html/body/div[1]/div[4]/div/div/div/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[11]/div[2]/div/div/table/tbody/tr[7]/td[2]/p')[0].text
-    total_D_D = dom.xpath('/html/body/div[1]/div[4]/div/div/div/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[11]/div[2]/div/div/table/tbody/tr[7]/td[5]/p')[0].text
-    new_C_D = dom.xpath('/html/body/div[1]/div[4]/div/div/div/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[11]/div[2]/div/div/table/tbody/tr[7]/td[2]/p/span')[0].text
-    new_D_D = dom.xpath('/html/body/div[1]/div[4]/div/div/div/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[11]/div[2]/div/div/table/tbody/tr[7]/td[5]/p/span')[0].text
-    death_R_D = dom.xpath('/html/body/div[1]/div[4]/div/div/div/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[11]/div[2]/div/div/table/tbody/tr[7]/td[8]/p')[0].text
+    total_C_D = dom.xpath('/html/body/div[1]/div[4]/div/div/div/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[12]/div[2]/div/div/table/tbody/tr[7]/td[2]/p')[0].text
+    total_D_D = dom.xpath('/html/body/div[1]/div[4]/div/div/div/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[12]/div[2]/div/div/table/tbody/tr[7]/td[5]/p')[0].text
+
+    new_C_D = dom.xpath('/html/body/div[1]/div[4]/div/div/div/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[12]/div[2]/div/div/table/tbody/tr[7]/td[2]/p/span')[0].text
+    new_D_D = dom.xpath('/html/body/div[1]/div[4]/div/div/div/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[12]/div[2]/div/div/table/tbody/tr[7]/td[5]/p/span')[0].text
+
+    death_R_D = dom.xpath('/html/body/div[1]/div[4]/div/div/div/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[12]/div[2]/div/div/table/tbody/tr[7]/td[8]/p')[0].text
 
 
     delhi_det = ''
